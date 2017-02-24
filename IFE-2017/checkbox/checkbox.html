@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	label{
+		display: block;
+    	margin: 20px;
+    	padding: 0px 25px;
+    	height: 1.5em;
+    	background: url(bg.png) no-repeat;
+    	background-position: 0 -100px;
+    	overflow: hidden;
+	}
+	
+
+	/*.radio label{
+		display: block;
+    	margin: 20px;
+    	padding: 0px 25px;
+    	height: 1.5em;
+    	background: url(bg.png) no-repeat;
+    	background-position: 0 0px;
+    	overflow: hidden;
+	}*/
+	label input{
+		opacity: 0;
+	}
+	.radio_check{
+		background: url(bg.png) no-repeat;
+		background-position: 0 -50px;
+	}
+
+	.checkbox_check{
+		background: url(bg.png) no-repeat;
+		background-position: 0 -150px;
+	}
+	
+</style>
+<body>
+	<div class="checkbox">
+		<label for="checkbox_1" ><input type="checkbox" value="1" id="checkbox_1" >复选第一个选项</label>
+		<label for="checkbox_2" ><input type="checkbox" value="2" id="checkbox_2" >复选第二个选项</label>
+	</div>
+	
+	<!-- <div class="radio">
+		<label for="radio_1"  ><input type="radio" value="1" name="radio" id="radio_1">单选第一个选项</label>
+		<label for="radio_2" ><input type="radio" value="2" name="radio" id="radio_2" >单选第二个选项</label>
+	</div> -->
+	
+</body>
+<script>
+	function check(id,getClass)
+	{
+		var dom=document.getElementById(id).parentNode;
+		console.log(document.getElementById(id).checked);
+		var className=dom.getAttribute('class');
+		if(getClass=='checkbox_check')
+		{
+			if(className!=getClass)
+			{
+				dom.setAttribute('class',getClass);
+			}
+			else
+			{
+				dom.setAttribute('class','');
+			}
+		}
+		else
+		{
+			if(document.getElementById(id).checked)
+			{
+				dom.setAttribute('class',getClass);
+			}
+			else
+			{
+				dom.setAttribute('class','');
+			}
+		}
+		
+
+	}
+
+	
+	(function(){
+		document.getElementById('checkbox_1').onclick=function(){
+			check('checkbox_1','checkbox_check');
+		}
+
+		document.getElementById('checkbox_2').onclick=function(){
+			check('checkbox_2','checkbox_check');
+		}
+
+		// document.getElementById('radio_1').onclick=function(){
+		// 	check('radio_1','radio_check');
+		// }
+
+		// document.getElementById('radio_2').onclick=function(){
+		// 	check('radio_2','radio_check');
+		// }
+	})()
+</script>
+</html>
