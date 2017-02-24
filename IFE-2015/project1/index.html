@@ -1,0 +1,139 @@
+<html>
+	<head>
+		<title>猜拳小游戏</title>
+	</head>
+	<script src="jquery.js"></script>
+	<style>
+		body{
+			background-color:rgb(117,150,253)
+		}
+		.main{
+			
+			width:600px;
+			height:400px;
+			position:absolute;
+			margin-left:-300px;
+			margin-top:200px;
+			left:50%;
+			height:50%;
+			
+		
+			
+		}
+		.hand{
+			line-height:400px;
+			width:150px;
+			height:150px;
+		}
+		.hand:hover{
+			cursor:pointer;
+		}
+		
+		.item{
+			display:flex;
+			justify-content:space-between;
+		}
+		.result{
+			width:150px;
+			height:150px;
+		
+			text-align:center;
+		}
+		ul li{
+			display:inline-block
+		}
+	</style>
+	<body>
+		<div class="main">
+			<div class="hand_wrapper">
+				<ul>
+					<li>你胜利了<span id="people_count">0</span>次</li>
+					<li style="float:right">电脑胜利了<span id="computer_count">0</span>次</li>
+				<ul>
+				<div class="item init">
+					<img src="img/jiandao.png" class="hand" item="jiandao">
+					<img src="img/shitou.png" class="hand" item="shitou">
+					<img src="img/bu.png" class="hand" item="bu">
+				</div>
+				
+				<div class="item result1">
+					<img src="img/jiandao.png" class="hand" id="player_choose">
+					<div class="result">you win</div>
+					<button id="again">再来一次！</button>
+					<img src="img/shitou.png" class="hand" id="computer_choose">
+				</div>
+				
+			</div>
+		</div>
+	</body>
+	<Script>
+		var item=['shitou','jiandao','bu'];
+		var player_choose=$('#player_choose');
+		var computer_choose=$('#computer_choose');
+		
+		var people_count=0;
+		var computer_count=0;
+		$(function(){
+			$('.result1').hide();
+			
+			$('.hand').click(function(){
+				$('.result1').show();
+				$('.init').hide();
+				var player=$(this).attr('item');
+				var player_img='img/'+player+'.png';
+		
+				var number=Math.round(2*Math.random())
+				var computer=item[number];
+				var computer_img='img/'+computer+'.png';
+				if(player=="jiandao" && computer=="bu")
+				{
+					player_choose.attr('src',player_img);
+					computer_choose.attr('src',computer_img);
+					people_count++;
+					$('#people_count').html(people_count);
+					console.log('玩家赢');
+					$('.result').html('you win')
+				}
+				else if(player=="shitou" && computer=="jiandao")
+				{
+					player_choose.attr('src',player_img);
+					computer_choose.attr('src',computer_img);
+					people_count++;
+					$('#people_count').html(people_count);
+					console.log('玩家赢');
+					$('.result').html('you win')
+				}
+				else if(player=="bu" && computer=="shitou")
+				{
+					player_choose.attr('src',player_img);
+					computer_choose.attr('src',computer_img);
+					people_count++;
+					$('#people_count').html(people_count);
+					console.log('玩家赢');
+					$('.result').html('you win')
+				}
+				else if(player==computer)
+				{
+					player_choose.attr('src',player_img);
+					computer_choose.attr('src',computer_img);
+					
+					console.log('平局');
+					$('.result').html('平局')
+				}
+				else{
+					player_choose.attr('src',player_img);
+					computer_choose.attr('src',computer_img);
+					computer_count++;
+					$('#computer_count').html(computer_count);
+					console.log('电脑赢');
+					$('.result').html('you lose')
+				}
+			})
+			
+			$('#again').click(function(){
+				$('.init').show();
+				$('.result1').hide();
+			})
+		})
+	</script>
+</html>

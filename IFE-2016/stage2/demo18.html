@@ -1,0 +1,124 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+    <!--
+      模拟一个队列，队列的每个元素是一个数字，初始队列为空
+      有一个input输入框，以及4个操作按钮
+      点击"左侧入"，将input中输入的数字从左侧插入队列中；
+      点击"右侧入"，将input中输入的数字从右侧插入队列中；
+      点击"左侧出"，读取并删除队列左侧第一个元素，并弹窗显示元素中数值；
+      点击"右侧出"，读取并删除队列又侧第一个元素，并弹窗显示元素中数值；
+      点击队列中任何一个元素，则该元素会被从队列中删除
+
+      tip:添加元素到数组尾部：push
+          添加元素到数组头部：unshift
+          从元素尾部删除一个：pop
+          从元素头部删除一个：shift
+    -->
+  </head>
+  <style>
+    #main{
+      
+      width: 100%;
+      margin-top: 20px;
+      height: 100px;
+    }
+    #main div{
+      display: inline-block;
+      text-align: center;
+      line-height: 50px;
+      border:1px solid black;
+      width: 50px;
+      height: 50px;
+      background-color: red;
+    }
+    #main div:hover{
+      cursor: pointer;
+    }
+  </style>
+<body>
+  <input type="text" id="data-input">
+  <button id="left-in" data-direction="left-in">左侧入</button>
+  <button id="right-in" data-direction="right-in">右侧入</button>
+  <button id="left-out" data-direction="left-out">左侧出</button>
+  <button id="right-out" data-direction="right-out">右侧出</button>
+  <div id="main">
+    
+  </div>
+</body>
+<script >
+var data=[];
+var $=function(id)
+{
+  return document.getElementById(id);
+}
+
+var data_input=$('data-input').value;
+var btn=document.getElementsByTagName('button');
+
+
+(function(){
+
+  for(var i=0;i<btn.length;i++)
+  {
+    btn[i].onclick=function(event){
+      var direction_str=event.target.dataset.direction;
+      var data_input=parseInt($('data-input').value);
+      if(direction_str=='left-in')
+      {
+        data.unshift(data_input);
+        console.log(data);
+        createDiv();
+      }
+      else if(direction_str=='right-in')
+      {
+        data.push(data_input);
+        console.log(data);
+        createDiv();
+      }
+      else if(direction_str=='left-out')
+      {
+        data.shift(data_input);
+        console.log(data);
+        createDiv();
+      }
+      else
+      {
+        data.pop(data_input);
+        console.log(data);
+        createDiv();
+      }
+    }
+
+    function createDiv(){
+      document.getElementById('main').innerHTML="";
+      for(var i=0;i<data.length;i++)
+      {
+        var dom=document.createElement('div');
+        dom.style.className='number'
+        dom.innerHTML=data[i]
+        document.getElementById('main').appendChild(dom);
+      }
+    }
+
+    $('main').onclick=function(event){
+      var number=parseInt(event.target.innerHTML);
+      if(number!=NaN)
+      {
+        for(var i=0;i<data.length;i++)
+        {
+          if(data[i]==number)
+          {
+            data.splice(i,1);
+            createDiv();
+          }
+        }
+      }
+
+    }
+  }
+})()
+</script>
+</html>

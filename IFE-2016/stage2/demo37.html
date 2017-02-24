@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#main{
+			width: 600px;
+			height:400px;
+			position: fixed;
+			top:50%;
+			left:50%;
+			margin-top: -200px;
+			margin-left: -300px;
+			border: 1px solid black;
+			
+		}
+		.main-title{
+			width: 100%;
+			height:50px;
+			background-color: lightgrey;
+			line-height: 50px;
+			text-align: center;
+		}
+		.main-content{
+			width: 100%;
+			height:302px;
+			text-align: center;
+			line-height: 352px;
+		}
+		.main-btnArea{
+			width: 100%;
+			height:50px;
+			line-height: 50px;
+			text-align: right;
+		}
+	</style>
+</head>
+<body>
+	<p>这些是内容 <button id="show">显示浮出层</button></p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+	<p>这些是内容</p>
+
+	<div id="main">
+		<div class="main-title">
+			这是一个浮出层
+		</div>
+		<div class="main-content">
+			浮出层的内容
+		</div>
+		<div class="main-btnArea">
+			<button class="exit">确定</button>
+			<button class="exit">取消</button>
+		</div>
+	</div>
+</body>
+<script>
+	function Layer(element){
+		var obj=new Object();
+		obj.element=element;
+		obj.show=function(event){
+			console.log('显示')
+		}
+		obj.hide=function(event){
+			console.log('隐藏')
+		}
+		return obj
+	}
+	function init(){
+		document.getElementById('main').style.display='none'
+	}
+
+	(function(){
+		// var dom=document.getElementById('main');
+		// var btn=document.getElementById('show');
+		// init()
+		// btn.onclick=function(event){
+		// 	document.getElementById('main').style.display='block';
+		// 	document.body.style.backgroundColor='grey'
+		// 	document.getElementsByClassName('main-content')[0].style.backgroundColor='white';
+		// 	console.log(event.target)
+		// }
+		// document.querySelector('.exit').onclick=function(event){
+		// 	init();
+		// 	document.body.style.backgroundColor='white'
+		// }
+		var layer=new Layer(document.getElementById('main'));
+		layer.hide();
+		
+	})()
+</script>
+</html>

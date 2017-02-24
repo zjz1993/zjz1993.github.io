@@ -1,0 +1,85 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+    <!--
+      如示例图中所示，在页面中实现一个输入框与按钮，要求点击验证按钮后，对输入框中内容进行格式校验，并在其下方显示校验结果
+      校验规则：
+      1.字符数为4~16位
+      2.每个英文字母、数字、英文符号长度为1
+      3.每个汉字，中文符号长度为2
+    -->
+  </head>
+  <style>
+    .error{
+      color: red;
+    }
+    .success{
+      color:green;
+    }
+    .info{
+      color:grey;
+    }
+    #message{
+      margin-top: 20px;
+      padding-left: 50px;
+    }
+    #check{
+      margin-left: 10px;
+    }
+  </style>
+<body>
+  名称：<input type="text" id="input"><button id="check">验证</button>
+  <div id="message" class="info">
+    必填，长度为4到14个字符
+  </div>
+</body>
+<script >
+function getLen(str){
+  var len=0;
+  for(var i=0;i<str.length;i++)
+  {
+    if(str.charCodeAt(i)>127||str.charCodeAt(i)==94)
+    {
+      len+=2;
+    }
+    else
+    {
+      len++;
+    }
+  }
+  return len;
+}
+
+function getInfo(n,str){
+  var messages=['姓名不能为空!','长度在4~16位，请重新输入','名称格式正确'];
+  var message=document.getElementById('message');
+  message.innerHTML=messages[n];
+  message.setAttribute('class',str)
+}
+
+(function(){
+ var btn=document.getElementById('check');
+ var data=document.getElementById('input');
+ function check(){
+  var data=document.getElementById('input').value;
+  var length=getLen(data);
+  if(length==0)
+  {
+    getInfo(0,'error');
+  }
+  else if(length<4||length>16)
+  {
+    getInfo(1,'error')
+  }
+  else
+  {
+    getInfo(2,'success');
+  }
+ }
+
+ btn.onclick=check;
+})()
+</script>
+</html>

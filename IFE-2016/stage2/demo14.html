@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+  </head>
+<body>
+
+  <h3>原来的污染城市列表,按照污染指数从小到大排序</h3>
+  <ul id="aqi-list">
+<!--   
+    <li>第一名：福州（样例），10</li>
+  	<li>第二名：福州（样例），10</li> -->
+  </ul>
+
+  <h3>筛选出污染指数大于60后的污染城市列表</h3>
+  <ul id="aqi-list-new">
+<!--   
+    <li>第一名：福州（样例），10</li>
+    <li>第二名：福州（样例），10</li> -->
+  </ul>
+
+<script type="text/javascript">
+
+var aqiData = [
+  ["北京", 90],
+  ["上海", 50],
+  ["福州", 10],
+  ["广州", 50],
+  ["成都", 90],
+  ["西安", 100]
+];
+
+var data=[];
+
+(function () {
+
+  /*
+  在注释下方编写代码
+  遍历读取aqiData中各个城市的数据
+  将空气质量指数大于60的城市显示到aqi-list的列表中
+
+  参考以下示例代码，页面加载后，将提供的空气质量数据数组，按照某种逻辑（比如空气质量大于60）进行过滤筛选，最后将符合条件的数据按照一定的格式要求显示在网页上
+
+  要点：1.自定义compare排序函数；
+        2.对排序后的数组按照污染指数大于60的条件进行排序
+        3.将动态修改dom的方法封装成一个函数，有两个参数，一个是数组名，一个是需要渲染ul的id。
+        4.立即执行匿名函数(function(){})()
+        匿名函数有两种调用方式，一种是函数表达式，即var a=function(){},还有一种就是立即执行匿名函数,用一对小括号把函数体包裹起来，小括号外面的小括号是对函数里参数的赋值
+        如(function(x,y){return x+y})(2,3),那么x=2，y=3,
+
+        这样的好处是不去污染全局命名空间，所谓不去污染全局命名空间，是因为 IIFE 创建了一个新的函数作用域，你真正的业务代码被封装在其中，自然就不会触碰到全局对象了。如果你需要全局对象，那就 pass 给 IIFE
+  */
+
+ 
+  //排序
+  var compare=function(arr1,arr2)
+  {
+    var a=arr1[1];
+    var b=arr2[1];
+    if(a<b)
+    {
+      return -1;
+    }
+    else if(a>b)
+    {
+      return 1;
+    }
+    else
+    {
+      return 0;
+    }
+  }
+  aqiData.sort(compare);
+  
+  //过滤
+  for(var i=0;i<aqiData.length;i++)
+  {
+    if(aqiData[i][1]>60)
+    {
+      data.push(aqiData[i]);
+    }
+  }
+  console.log(data);
+
+  function myAppend(arr,id)
+  {
+    for(var i=0;i<arr.length;i++)
+    {
+        var n=i+1;
+        var node=document.createElement('li');
+        var str='第'+n+'名:'+arr[i][0]+','+arr[i][1]
+        node.innerHTML=str;
+        document.getElementById(id).appendChild(node);
+    }
+  }
+  
+  myAppend(aqiData,'aqi-list');
+  myAppend(data,'aqi-list-new');
+
+})();
+
+</script>
+</body>
+</html>

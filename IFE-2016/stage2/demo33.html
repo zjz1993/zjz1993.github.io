@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>百度学院--任务33</title>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding:0;
+	}
+    tr{border: 1px solid #000000;width: 550px;height: 50px;}
+    td{border: 1px solid #000000;width: 50px;height: 50px;text-align: center;position: relative;}
+    #chess {
+        background-color: #f00;
+        position: relative;
+        width: 52px;
+        height: 50px;
+        padding: 0;
+    }
+   
+    .left{
+    	position: absolute;
+    	left: 0;
+    	height: 52px;
+    	width: 15px;
+    	background-color: blue;
+    	top:0;
+
+    }
+    .right{
+    	position: absolute;
+    	right: 0;
+    	top:0;
+    	height: 52px;
+    	width: 15px;
+    	background-color: blue;
+    }
+    .top{
+    	position: absolute;
+    	height: 15px;
+    	width: 52px;
+    	background-color: blue;
+    	top:0;
+    }
+    .bottom{
+    	position: absolute;
+    	height: 15px;
+    	width: 52px;
+    	background-color: blue;
+    	bottom:0;
+    }
+   
+</style>
+<body>
+<table cellSpacing="0" id="table">
+    <tr>
+        <td></td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+        <td>10</td>
+    </tr>
+
+    <tr>
+        <td>1</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>2</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>3</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>4</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td ></td>
+        <td  >
+        	<div id="chess">
+        		<div  id="direction" class="top"></div>
+        	</div>
+        	
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>5</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>6</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>7</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>8</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>9</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+
+    <tr>
+        <td>10</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+<input type="text" id="txt1"><button id="btn1">执行</button>
+</body>
+<script type="text/javascript" >
+	var deg=0;
+	var dir={};
+	function setDirection(deg){
+		var direction=document.getElementById('direction')
+		// if(deg%360==0)
+		// {
+		// 	direction.setAttribute('class','top');
+		// 	console.log('上')
+		// }
+		// else if((deg-90)%360==0)
+		// {
+		// 	direction.setAttribute('class','right');
+		// 	console.log('右')
+		// 	console.log(deg)
+		// }
+		console.log(deg)
+
+	}
+
+	function getInitDirection(){
+		for(var i=0;i<11;i++)
+		{
+			for(var j=0;j<11;j++)
+			{
+				var data=document.getElementById('table').rows[i].cells[j].innerHTML;
+				
+				if(data!=''&&isNaN(data))
+				{
+					dir['x']=i;
+					dir['y']=j;
+					dir['dom']=data
+					return dir;
+				}
+			}
+		}
+	}
+	(function(){
+		setDirection(0);
+		console.log(document.getElementById("table").childNodes.item(1).childNodes)
+		var dir=getInitDirection();
+		console.log(dir)
+		document.onkeydown=function(event){
+				if(event.keyCode==39)
+				{
+					console.log('右方向键');
+					deg=90+deg;
+					var str="rotate("+deg+"deg)";
+					document.getElementById('chess').style.transform=str;
+					setDirection(deg);
+					
+				}
+				else if(event.keyCode==37)
+				{
+					console.log('方向左键');
+					deg=deg-90;
+					var str="rotate("+deg+"deg)";
+					document.getElementById('chess').style.transform=str;
+					setDirection(deg);
+					
+				}
+				else if(event.keyCode==40)
+				{
+					console.log('向后转');
+					deg=deg-180;
+					var str="rotate("+deg+"deg)";
+					document.getElementById('chess').style.transform=str;
+					
+					setDirection(deg);
+				}
+				else if(event.keyCode==38)
+				{
+					document.getElementById('table').rows[dir.x].cells[dir.y].innerHTML='';
+					if(dir.x>1)
+					{
+						dir.x=dir.x-1;
+						console.log(dir)
+						document.getElementById('table').rows[dir.x].cells[dir.y].innerHTML=dir.dom;
+					}
+					else
+					{
+						alert('已到边界')
+					}
+					
+				}
+
+			}
+	})()
+</script>
+</html>

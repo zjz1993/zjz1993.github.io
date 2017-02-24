@@ -1,0 +1,282 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+    <!--
+      如示例图中所示，在页面中实现一个输入框与按钮，要求点击验证按钮后，对输入框中内容进行格式校验，并在其下方显示校验结果
+      校验规则：
+      1.字符数为4~16位
+      2.每个英文字母、数字、英文符号长度为1
+      3.每个汉字，中文符号长度为2
+    -->
+  </head>
+  <style>
+    .error{
+      color: red;
+    }
+    .success{
+      color:lightgreen;
+    }
+    .info{
+      color:grey;
+    }
+    #message{
+      padding-left: 40px;
+    }
+    
+  </style>
+<body>
+<ul>
+	<li>
+		名称：<input type="text" id="input" id="test" data-name='require'>
+		<div class="info">
+    		长度为4到14个字符
+  		</div>
+	</li>
+	<li>
+		密码:<input type="password" data-name='require password' id="password">
+		<div class="info">
+    		长度为4到14个字符,且为字母和数字的混合
+  		</div>
+	</li>
+	<li>
+		确认:<input type="password" data-name='require check' id="passwordCheck">
+		<div class="info">
+    		必填
+  		</div>
+	</li>
+	<li>
+		邮箱:<input type="email" data-name='require email'>
+		<div class="info">
+    		必填 格式例如xxxxx@xx.com
+  		</div>
+	</li>
+	<li>
+		手机:<input type="number" data-name='require mobile'>
+		<div class="info">
+    		必填
+  		</div>
+	</li>
+</ul>
+<button id="submit">提交</button>
+</body>
+<script >
+var result=[]
+function getLen(str){
+  var len=0;
+  for(var i=0;i<str.length;i++)
+  {
+    if(str.charCodeAt(i)>127||str.charCodeAt(i)==94)
+    {
+      len+=2;
+    }
+    else
+    {
+      len++;
+    }
+  }
+  return len;
+}
+
+function init(){
+	var info=document.getElementsByClassName('info');
+	for(var i=0;i<info.length;i++)
+	{
+		info[i].style.display="none";
+	}
+}
+
+function require(data){
+	if(getLen(data)==0)
+	{
+		return false;
+	}
+	else{
+		return true;
+	}
+}
+
+function isLongEnough(data)
+{
+	if(getLen(data)>4&&getLen(data)<14)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+function showResult(node,str,n)
+{
+	var word=["长度在4到14个字符！","不能为空","填写不规范，需为数字和字母的组合","两次密码不一致，请重新输入","请填写正确的邮箱格式","请填写正确的手机","验证通过"];
+	node.innerHTML=word[n];
+	node.setAttribute('class',str);
+}
+
+function check(item,value,node){
+	if(item=='require')
+	{
+		if(require(value))
+		{
+			if(!isLongEnough(value))
+			{
+				showResult(node,'error',0)
+				result[0]=0
+			}
+			else
+			{
+				showResult(node,'success',6)
+				result[0]=1;
+			}
+			
+		}
+		else
+		{
+			showResult(node,'error',1)
+			result[0]=0;
+		}
+	}
+	else if(item=='require password')
+	{
+		if(require(value))
+		{
+			if(!isNaN(value))
+			{
+				showResult(node,'error',2)
+				result[1]=0;
+			}
+			else if(!isLongEnough(value))
+			{
+				showResult(node,'error',0)
+				result[1]=0;
+			}
+			else
+			{
+				showResult(node,'success',6)
+				result[1]=1;
+			}
+		}
+		else
+		{
+			showResult(node,'error',1);
+			result[1]=0
+		}
+	}
+	else if(item=='require check')
+	{
+		if(require(value))
+		{
+			if(document.getElementById('password').value!=document.getElementById('passwordCheck').value)
+			{
+				showResult(node,'error',3)
+				result[2]=0;
+			}
+			else
+			{
+				showResult(node,'success',6);
+				result[2]=1
+			}
+		}
+		else
+		{
+			showResult(node,'error',1);
+			result[2]=0
+		}
+	}
+	else if(item=='require email')
+	{
+		if(require(value))
+		{
+			var re=/^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+			if(re.test(value))
+			{
+				showResult(node,'success',6);
+				result[3]=1;
+			}
+			else
+			{
+				showResult(node,'error',4);
+				result[3]=0;
+			}
+		}
+		else
+		{
+			showResult(node,'error',1);
+			result[3]=0
+		}
+	}
+	else
+	{
+		if(require(value))
+		{
+			var re = /^1\d{10}$/;
+			if(re.test(value))
+			{
+				showResult(node,'success',6);
+				result[4]=1
+			}
+			else
+			{
+				showResult(node,'error',5);
+				result[4]=0
+			}
+		}
+		else
+		{
+			showResult(node,'error',1)
+			result[4]=0;
+		}
+	}
+}
+
+function submit(){
+	document.getElementById('submit').onclick=function(){
+		var str=""
+		for(var i=0;i<result.length;i++)
+		{
+			if(result[i]==0)
+			{
+				switch (i)
+				{
+					case 0:str+='名称输入有误,';break;
+					case 1:str+='密码输入有误,';break;
+					case 2:str+='密码确认输入有误,';break;
+					case 3:str+='邮箱输入有误,';break;
+					case 4:str+='电话输入有误';break;
+				}
+			}
+		}
+		
+		if(str=='')
+		{
+			alert('全部验证通过');
+		}
+		else
+		{
+			alert(str);
+		}
+	}
+}
+
+(function(){
+	init();
+	var input=document.getElementsByTagName('input')
+ 	for(var i=0;i<input.length;i++)
+ 	{
+ 		input[i].onfocus=function(event){
+ 			this.nextElementSibling.style.display='block'
+ 		}
+ 		input[i].onblur=function(event){
+ 			var item=event.target.dataset.name;
+ 			var value=event.target.value;
+ 			var node=this.nextElementSibling;
+ 			check(item,value,node)
+ 		}
+ 	}
+ 	submit();
+})()
+</script>
+</html>
