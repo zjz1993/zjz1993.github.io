@@ -6,7 +6,7 @@ function searchIt(keyword) {
 	var keyword, title, link, i;
 	keyword = keyword || '';
 	if (keyword) {
-		page.open('https://www.baidu.com/s?wd=' + keyword, function(status) {
+		page.open('https://www.baidu.com/s?wd=' + encodeURIComponent(keyword, function(status) {
 			var startTime = new Date();
 			if (status == "fail") {
 				console.log("open failed!");
