@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	#main{
+		display: flex;
+		justify-content:space-between;
+		align-items:center;
+	}
+	.type1{
+		width: 150px;
+		border: 1px solid #f00
+	}
+	.type2{
+		width: 150px;
+		border:1px solid #0f0;
+	}
+	@media all and (max-width:640px) {
+    	#main{
+    		align-items:flex-start;
+    		flex-wrap:wrap;
+    	}
+    	.type2{
+    		order:-1;
+    	}
+	}
+
+</style>
+<body>
+	<div id="main">
+		<div class="type1" style="height:120px">1</div>
+		<div class="type1" style="height:100px">2</div>
+		<div class="type1" style="height:40px">3</div>
+		<div class="type2" style="height:200px">4</div>
+	</div>
+	
+</body>
+</html>
