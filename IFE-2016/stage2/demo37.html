@@ -1,124 +1,157 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<style>
-		#main{
-			width: 600px;
-			height:400px;
-			position: fixed;
-			top:50%;
-			left:50%;
-			margin-top: -200px;
-			margin-left: -300px;
-			border: 1px solid black;
-			
-		}
-		.main-title{
-			width: 100%;
-			height:50px;
-			background-color: lightgrey;
-			line-height: 50px;
-			text-align: center;
-		}
-		.main-content{
-			width: 100%;
-			height:302px;
-			text-align: center;
-			line-height: 352px;
-		}
-		.main-btnArea{
-			width: 100%;
-			height:50px;
-			line-height: 50px;
-			text-align: right;
-		}
-	</style>
+    <title>浮出层</title>
+    <meta charset="utf-8">
 </head>
+<style>
+* {
+    font-family: '微软雅黑';
+    font-size: 24px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    text-align: center;
+    margin: 0px;
+    height: 2000px;
+}
+
+#btnLogin {
+    border-radius: 20px;
+    width: 240px;
+    height: 48px;
+    outline: none;
+    margin-top: 50px;
+}
+
+#divFloat {
+    border: 2px solid gray;
+    padding: 20px;
+    text-align: left;
+    border-radius: 20px;
+    background-color: rgb(240, 240, 240);
+}
+
+#divFloat form {
+    text-align: right;
+}
+
+#divFloat form input {
+    width: 90px;
+    /*border-radius: 10px;*/
+    outline: none;
+    color: white;
+}
+
+#divFloat form input:first-child {
+    background-color: rgb(34, 185, 60);
+}
+
+#divFloat form input:last-child {
+    background-color: rgb(204, 85, 92);
+}
+
+</style>
+
 <body>
-	<p>这些是内容 <button id="show">显示浮出层</button></p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-	<p>这些是内容</p>
-
-	<div id="main">
-		<div class="main-title">
-			这是一个浮出层
-		</div>
-		<div class="main-content">
-			浮出层的内容
-		</div>
-		<div class="main-btnArea">
-			<button class="exit">确定</button>
-			<button class="exit">取消</button>
-		</div>
-	</div>
+    <input type="button" value="登陆" id="btnLogin"></input>
+    <div id="divFloat" draggable="true">
+        <h1>这是一个弹出层</h1>
+        <p>这是一个弹出层，点击遮罩或者按钮关闭
+            <br/>按住标题处可以拖动</p>
+        <form>
+            <input type="button" value="确定" id="btnSure"></input>
+            <input type="button" value="取消" id="btnCancel"></input>
+        </form>
+    </div>
 </body>
 <script>
-	function Layer(element){
-		var obj=new Object();
-		obj.element=element;
-		obj.show=function(event){
-			console.log('显示')
-		}
-		obj.hide=function(event){
-			console.log('隐藏')
-		}
-		return obj
-	}
-	function init(){
-		document.getElementById('main').style.display='none'
-	}
 
-	(function(){
-		// var dom=document.getElementById('main');
-		// var btn=document.getElementById('show');
-		// init()
-		// btn.onclick=function(event){
-		// 	document.getElementById('main').style.display='block';
-		// 	document.body.style.backgroundColor='grey'
-		// 	document.getElementsByClassName('main-content')[0].style.backgroundColor='white';
-		// 	console.log(event.target)
-		// }
-		// document.querySelector('.exit').onclick=function(event){
-		// 	init();
-		// 	document.body.style.backgroundColor='white'
-		// }
-		var layer=new Layer(document.getElementById('main'));
-		layer.hide();
+
+	
+	(function() {
+		function Layer(element)
+		{
+			this.ele=element;
+			console.log(this.ele);
+			this.maskEle=null;
+			this.init();
+			this.ele.onclick=function(e){
+				e.stopPropagation();
+			}
+		}
+
+		Layer.prototype.init=function(){
+			this.maskEle=document.createElement('div');
+			this.maskEle.style.width = window.screen.width + 'px';
+	        this.maskEle.style.height = window.screen.height + 'px';
+			this.maskEle.style.position = 'fixed';
+	        this.maskEle.style.left = '50%';
+	        this.maskEle.style.top = '50%';
+	        this.maskEle.style.transform = 'translate(-50%, -50%)';
+	        this.maskEle.style.backgroundColor = 'rgba(108,108,108,0.7)';
+	        this.maskEle.style.display='none'
+
+			this.ele.style.position = 'absolute';
+	        this.ele.style.left = '50%';
+	        this.ele.style.top = '50%';
+	        this.ele.style.width = this.ele.clientWidth + 'px';
+	        this.ele.style.transform = 'translate(-50%, -50%)';
+	        this.ele.style.display='none'
+
+	        this.maskEle.appendChild(this.ele);
+			document.body.appendChild(this.maskEle);
+		}
+
+		Layer.prototype.show=function(){
+			this.maskEle.style.display = 'block';
+			this.ele.style.display='block';
+			console.log('click')
+		}
+
+		Layer.prototype.hide=function(){
+			this.maskEle.style.display = 'none';
+			this.ele.style.display='none';
+			console.log('click')
+		}
+
+		Layer.prototype.move=function(event){
+			var self=this;
+			 var disX =  self.ele.offsetLeft,
+	                disY = self.ele.offsetTop;
+
+			self.ele.style.left = event.clientX + "px";
+	        self.ele.style.top = event.clientY + "px";
+	        console.log(event.clientX+','+event.clientY)
+		}
+
+		var la=new Layer(document.getElementById('divFloat'));
+		document.body.onclick=function(){
+			la.hide()
+		}
+
+
+		document.getElementById('btnLogin').onclick=function(event){
+			la.show()
+			event.stopPropagation()
+		}
+
+		document.getElementById('btnSure').onclick=function(){
+			la.hide()
+		}
+
+		document.getElementById('btnCancel').onclick=function(){
+			la.hide()
+		}
 		
+		document.getElementById('divFloat').ondragend=function(event){
+			la.move(event);
+		}
 	})()
 </script>
 </html>
