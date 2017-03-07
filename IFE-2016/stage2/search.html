@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	(function(){
+		var n=5;//迷宫是5*5的方形
+var src=[0,0];//起点
+var des=[2,3];//终点
+var next=[[0,-1],[0,1],[-1,0],[1,0]];//下一步的方位，上、下、左、右
+var palace=[];//初始化迷宫
+for(var i=0;i<n;i++){
+    for(var j=0;j<n;j++){
+        palace.push([i,j,1]);//前两位是x和y坐标，最后一位为状态值，0表示不可行，1表示可行
+    }
+}
+//设置墙
+var wall=[[0,1],[1,3],[3,3]];
+for(var i=0;i<wall.length;i++){
+    palace[wall[i][0]*n+wall[i][1]][2]=0;//设为墙
+}
+
+console.log("输出迷宫");
+drawPalace();
+function drawPalace(){
+    console.log("  ——————————");
+    for(var i=0;i<n;i++){
+        var shower=i+" ";
+        for(var j=0;j<n;j++){
+            if(i==src[0] && j==src[1]){
+                shower+="▲ ";//起点
+            }else if(i==des[0] && j==des[1]){
+                shower+="● ";//目标
+            }else if(palace[i*n+j][2]==0){
+                shower+="# ";//墙
+            }else if(palace[i*n+j][2]==1){
+                shower+="□ ";//空地
+            }else if(palace[i*n+j][2]==2){
+                shower+="■■";//路径
+            }
+
+        }   
+        console.log(shower+"|");
+    }
+    console.log("  ——————————");
+}
+
+var min=n*n+1;//用于记录最小路径长度
+var map=[];
+
+//寻路算法
+function search(pos,step,result){//pos记录当前坐标，step记录步数
+    //边界条件
+    if(pos[0]==des[0] && pos[1]==des[1]){//如果到达了目的地
+        if(step<min){
+            map=[];
+            for(var j=0;j<result.length;j++){
+                map.push(result[j]);
+            }
+            min=step;//如果当前抵达步数比最小值小，则修改最小值
+            result=[];
+        }
+    }
+    //递归
+    for(var i=0;i<next.length;i++){
+        var tmpos=(pos[0]+next[i][0])*n+pos[1]+next[i][1];//下一步的坐标  
+        if(pos[0]+next[i][0]<0 || pos[0]+next[i][0]>=n || pos[1]+next[i][1]<0 || pos[1]+next[i][1]>=n)
+            continue;//如果下一步越界继续循环，尝试下一个方向
+        else if(palace[tmpos] && palace[tmpos][2]==1)//如果下一步不是墙
+        {
+            palace[tmpos][2]=0;//标记已经走过
+            result.push([pos[0]+next[i][0],pos[1]+next[i][1]]);
+            search([pos[0]+next[i][0],pos[1]+next[i][1]],step+1,result);
+            palace[tmpos][2]=1;//尝试结束，取消标记
+            result.pop();
+        }
+    }
+}
+palace[0][2]=0;
+search(src,0,[]);//从起点开始，初始化步数为0
+if(min<=n*n){
+    console.log("从起点",src,"到终点",des,"最短路径长为：",min,"最短路径为：");
+    console.log(src);
+    for(var i=0;i<map.length;i++){
+        console.log("=>[",map[i][0],",",map[i][1],"]");
+        palace[map[i][0]*n+map[i][1]][2]=2;
+    }
+    console.log("绘制路径");
+    drawPalace();
+}else{
+    console.log("找不到路径到达");
+}
+	})()
+</script>
+</html>

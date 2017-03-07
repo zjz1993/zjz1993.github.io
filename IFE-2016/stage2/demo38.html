@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	td{
+		border: 2px solid purple;
+    	padding: 5px 10px;
+	}
+	.arrow{
+		cursor: pointer;
+	}
+</style>
+<body>
+	<table id="tableScore"  cellspacing="0"></table>
+</body>
+<script>
+	function randomScore(){
+		return Math.floor(Math.random()*100);
+	}
+	
+	function mockData(item,userName){
+		var ScoreData={};
+		for(var i=0;i<userName.length;i++)
+		{
+			var temp={};
+			var sum=0;
+			for(var j=1;j<item.length;j++)
+			{
+				if(j!=item.length-1)
+				{
+					temp[item[j]]=randomScore();
+					sum+=temp[item[j]];
+				}
+				else
+				{
+					temp[item[j]]=sum;
+				}
+			}
+			ScoreData[userName[i]]=temp;
+		}
+		return ScoreData;
+	}
+	var item=['姓名','语文','数学','英语','化学','总分'];
+	var userName=['小明','小红','小李'];
+	
+	var table=document.getElementById('tableScore');
+	
+	function createTable(){
+		var tr_title=document.createElement('tr');
+		var str=''
+		for(var i=0;i<item.length;i++)
+		{
+			if(i==0)
+			{
+				str+='<td>'+item[i]+'</td>';
+			}
+			else
+			{
+				var str1='<span class="arrow">▲</span><span class="arrow">▼</span>'
+				str+='<td>'+item[i]+str1+'</td>';
+			}
+			
+		}
+		tr_title.innerHTML=str;
+		var tHead=document.createElement('tHead');
+		tHead.appendChild(tr_title);
+		table.appendChild(tHead);
+
+		var ScoreData=mockData(item,userName);
+
+		for(var i in ScoreData)
+		{
+			var tr=document.createElement('tr');
+			var str='';
+			str+='<td>'+i+'</td>'
+			for(var j in ScoreData[i])
+			{
+
+				str+='<td>'+ScoreData[i][j]+'</td>';
+			}
+			console.log(str)
+			
+			tr.innerHTML=str;
+			table.appendChild(tr);
+		}
+	}
+
+	(function(){
+		createTable();
+	})()
+</script>
+</html>
