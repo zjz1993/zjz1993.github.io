@@ -64,10 +64,10 @@
   top: 30px;
 }
 .nav .info {
+  display: flex;
   margin-left: 10px;
   line-height: 68px;
-  vertical-align: top;
-  position: relative;
+  align-items: center;
   right: 80px;
 }
 .nav .info img {
@@ -76,9 +76,6 @@
 }
 .nav .info span {
   color: white;
-  position: absolute;
-  left: 27px;
-  top: -5px;
 }
 .content-wrapper {
   margin-top: 55px;
