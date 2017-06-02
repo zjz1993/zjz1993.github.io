@@ -90,12 +90,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#jz-ui组件库</p>
-<p>##设计初衷</p>
-<blockquote>
+        <h1 id="jz-ui组件库"><a href="#jz-ui组件库" class="headerlink" title="jz-ui组件库"></a>jz-ui组件库</h1><h2 id="设计初衷"><a href="#设计初衷" class="headerlink" title="设计初衷"></a>设计初衷</h2><blockquote>
 <p>jz-ui是自己在学习了vue2.0框架后，想提高自己使用vue的水平，恰巧在实习的公司又开发了vue的前端项目，所以想把常用的ui功能集合到一起<br>github地址：<a href="https://github.com/zjz1993/jz-ui" target="_blank" rel="external">https://github.com/zjz1993/jz-ui</a><br>使用方法：在vue工程的main.js里，先import jzUi from ‘jz-ui’ 随后import ‘jz-ui/lib/index.css’，最后Vue.use(jzUi)<br>目前开发完成的功能有button组件和icon组件，其余组件还在开发中~~</p>
 </blockquote>
-<p>##1.button组件使用说明<br>默认用法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;jzButton&gt;默认按钮&lt;/jzButton&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="1-button组件使用说明"><a href="#1-button组件使用说明" class="headerlink" title="1.button组件使用说明"></a>1.button组件使用说明</h2><p>默认用法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;jzButton&gt;默认按钮&lt;/jzButton&gt;</div></pre></td></tr></table></figure></p>
 <p>此时，按钮的calss将被解析为jz-button–default,这是默认的样式，效果如图</p>
 <p><img src="/Users/zhaojunzhe/Documents/blog/source/img/defaultButton.png" alt="img"><br>本组件库预制了三种主题，primary success和error。如果您想使用它们，只需要给type属性传入响应的字符串即可，例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;jzButton type=&quot;success&quot;&gt;123&lt;jzButton&gt;</div></pre></td></tr></table></figure></p>
 <p>此时的效果如图<br><img src="/Users/zhaojunzhe/Documents/blog/source/img/buttonSuccess.png" alt="img"><br>如果对于button的背景色不满意，您还可以给bgColor属性传入对应的颜色值，包括rgb颜色值，十六进制颜色值等，例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;jzButton bgColor=&quot;blue&quot;&gt;123&lt;/jzButton&gt;</div></pre></td></tr></table></figure></p>
@@ -103,15 +101,44 @@
 <p>您还可以禁用这个button，如果想这样做，只需给disabled属性传入disabled属性即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;jzButton disabled=&quot;disbabled&quot;&gt;123&lt;/jzButton&gt;</div></pre></td></tr></table></figure></p>
 <p>还可以在button中插入图标，您只需这样做<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;jzButton &gt;&lt;jzIcon type=&quot;bath&quot;&gt;&lt;/jzIcon&gt;123&lt;/jzButton&gt;</div></pre></td></tr></table></figure></p>
 <p>此时效果如图<br><img src="/Users/zhaojunzhe/Documents/blog/source/img/buttonIcon.png" alt="img"><br>关于icon的内容，将在icon组件里详细介绍</p>
-<p>##2.icon组件使用说明<br>关于icon，jz-ui中的图标使用开源项目<a href="http://fontawesome.dashgame.com/" target="_blank" rel="external">fontAwesome</a></p>
-<p>###如何使用<br>使用<code>&lt;jzIcon /&gt;</code>组件，只需要指定图标对应的type属性<br>例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;jzIcon type=&quot;bath&quot;&gt;&lt;/jzIcon&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="2-icon组件使用说明"><a href="#2-icon组件使用说明" class="headerlink" title="2.icon组件使用说明"></a>2.icon组件使用说明</h2><p>关于icon，jz-ui中的图标使用开源项目<a href="http://fontawesome.dashgame.com/" target="_blank" rel="external">fontAwesome</a></p>
+<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><p>使用<code>&lt;jzIcon /&gt;</code>组件，只需要指定图标对应的type属性<br>例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;jzIcon type=&quot;bath&quot;&gt;&lt;/jzIcon&gt;</div></pre></td></tr></table></figure></p>
 <p>经过vue框架的计算属性计算之后，将渲染为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;i class=&quot;jz-icon jz-icon-bath&quot;&gt;</div></pre></td></tr></table></figure></p>
-<p>###API<br>属性 | 说明 | 用法 | 默认值<br>—-|——|—–|——<br>type | 图标的名称，从<a href="http://fontawesome.dashgame.com/" target="_blank" rel="external">fontAwesome</a>获得  | <code>&lt;jzIcon type=&quot;bath&quot; /&gt;</code> | 无<br>size | 图标的大小  | <code>&lt;jzIcon type=&quot;bath&quot; size=&quot;30px&quot; /&gt;</code> | 默认图标的大小是width=15 height=15<br>color | 图标的颜色  |  <code>&lt;jzIcon type=&quot;bath&quot; size=&quot;30px&quot; color=&quot;red&quot;/&gt;</code>| 支持颜色的引文名称，rgb颜色格式，十六进制颜色格式等命名方式</p>
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+<th>用法</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>图标的名称，从<a href="http://fontawesome.dashgame.com/" target="_blank" rel="external">fontAwesome</a>获得</td>
+<td><code>&lt;jzIcon type=&quot;bath&quot; /&gt;</code></td>
+<td>无</td>
+</tr>
+<tr>
+<td>size</td>
+<td>图标的大小</td>
+<td><code>&lt;jzIcon type=&quot;bath&quot; size=&quot;30px&quot; /&gt;</code></td>
+<td>默认图标的大小是width=15 height=15</td>
+</tr>
+<tr>
+<td>color</td>
+<td>图标的颜色</td>
+<td><code>&lt;jzIcon type=&quot;bath&quot; size=&quot;30px&quot; color=&quot;red&quot;/&gt;</code></td>
+<td>支持颜色的引文名称，rgb颜色格式，十六进制颜色格式等命名方式</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zjz.com/2017/06/02/jz-ui组件库使用说明/" data-id="cj3fiy93g0002gc9aqd1t9m2o" class="article-share-link">Share</a>
+      <a data-url="http://zjz.com/2017/06/02/jz-ui组件库使用说明/" data-id="cj3fj26y00000i19ajrbq8fml" class="article-share-link">Share</a>
       
       
     </footer>
@@ -148,7 +175,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zjz.com/2017/06/02/第一篇/" data-id="cj3fiy93c0001gc9aqnokz0la" class="article-share-link">Share</a>
+      <a data-url="http://zjz.com/2017/06/02/第一篇/" data-id="cj3fj26yc0002i19azc1di4ci" class="article-share-link">Share</a>
       
       
     </footer>
@@ -193,7 +220,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zjz.com/2017/06/02/hello-world/" data-id="cj3fiy9350000gc9a5bo57vtl" class="article-share-link">Share</a>
+      <a data-url="http://zjz.com/2017/06/02/hello-world/" data-id="cj3fj26y80001i19aga0p7sdg" class="article-share-link">Share</a>
       
       
     </footer>
