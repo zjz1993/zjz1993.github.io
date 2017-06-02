@@ -15,7 +15,7 @@
 <meta property="og:image" content="http://zjz.com/Users/zhaojunzhe/Documents/blog/source/img/buttonSuccess.png">
 <meta property="og:image" content="http://zjz.com/Users/zhaojunzhe/Documents/blog/source/img/button3.png">
 <meta property="og:image" content="http://zjz.com/Users/zhaojunzhe/Documents/blog/source/img/buttonIcon.png">
-<meta property="og:updated_time" content="2017-06-02T07:16:12.000Z">
+<meta property="og:updated_time" content="2017-06-02T07:24:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jz-ui组件库使用说明">
 <meta name="twitter:description" content="#jz-ui组件库 ##设计初衷  jz-ui是自己在学习了vue2.0框架后，想提高自己使用vue的水平，恰巧在实习的公司又开发了vue的前端项目，所以想把常用的ui功能集合到一起github地址：https://github.com/zjz1993/jz-ui使用方法：在vue工程的main.js里，先import jzUi from ‘jz-ui’ 随后import ‘jz-ui/lib/i">
@@ -101,21 +101,21 @@
 </blockquote>
 <p>##1.button组件使用说明<br>默认用法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;jzButton&gt;默认按钮&lt;/jzButton&gt;</div></pre></td></tr></table></figure></p>
 <p>此时，按钮的calss将被解析为jz-button–default,这是默认的样式，效果如图</p>
-<p><img src="/Users/zhaojunzhe/Documents/blog/source/img/defaultButton.png" alt="button1"><br>本组件库预制了三种主题，primary success和error。如果您想使用它们，只需要给type属性传入响应的字符串即可，例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;jzButton type=&quot;success&quot;&gt;123&lt;jzButton&gt;</div></pre></td></tr></table></figure></p>
-<p>此时的效果如图<br><img src="/Users/zhaojunzhe/Documents/blog/source/img/buttonSuccess.png" alt="button2"><br>如果对于button的背景色不满意，您还可以给bgColor属性传入对应的颜色值，包括rgb颜色值，十六进制颜色值等，例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;jzButton bgColor=&quot;blue&quot;&gt;123&lt;/jzButton&gt;</div></pre></td></tr></table></figure></p>
-<p>此时效果如图<br><img src="/Users/zhaojunzhe/Documents/blog/source/img/button3.png" alt="button2"><br>关于button组件的尺寸，预制了五种尺寸：tiny，small，default，large和full，它们分别代表了15%，30%，50%，60%和100%宽度，使用时的方法如下方所示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;jzButton size=&quot;full&quot;&gt;123&lt;/jzButton&gt;</div></pre></td></tr></table></figure></p>
+<p><img src="/Users/zhaojunzhe/Documents/blog/source/img/defaultButton.png" alt="img"><br>本组件库预制了三种主题，primary success和error。如果您想使用它们，只需要给type属性传入响应的字符串即可，例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;jzButton type=&quot;success&quot;&gt;123&lt;jzButton&gt;</div></pre></td></tr></table></figure></p>
+<p>此时的效果如图<br><img src="/Users/zhaojunzhe/Documents/blog/source/img/buttonSuccess.png" alt="img"><br>如果对于button的背景色不满意，您还可以给bgColor属性传入对应的颜色值，包括rgb颜色值，十六进制颜色值等，例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;jzButton bgColor=&quot;blue&quot;&gt;123&lt;/jzButton&gt;</div></pre></td></tr></table></figure></p>
+<p>此时效果如图<br><img src="/Users/zhaojunzhe/Documents/blog/source/img/button3.png" alt="img"><br>关于button组件的尺寸，预制了五种尺寸：tiny，small，default，large和full，它们分别代表了15%，30%，50%，60%和100%宽度，使用时的方法如下方所示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;jzButton size=&quot;full&quot;&gt;123&lt;/jzButton&gt;</div></pre></td></tr></table></figure></p>
 <p>您还可以禁用这个button，如果想这样做，只需给disabled属性传入disabled属性即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;jzButton disabled=&quot;disbabled&quot;&gt;123&lt;/jzButton&gt;</div></pre></td></tr></table></figure></p>
 <p>还可以在button中插入图标，您只需这样做<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;jzButton &gt;&lt;jzIcon type=&quot;bath&quot;&gt;&lt;/jzIcon&gt;123&lt;/jzButton&gt;</div></pre></td></tr></table></figure></p>
-<p>此时效果如图<br><img src="/Users/zhaojunzhe/Documents/blog/source/img/buttonIcon.png" alt="button3"><br>关于icon的内容，将在icon组件里详细介绍</p>
+<p>此时效果如图<br><img src="/Users/zhaojunzhe/Documents/blog/source/img/buttonIcon.png" alt="img"><br>关于icon的内容，将在icon组件里详细介绍</p>
 <p>##2.icon组件使用说明<br>关于icon，jz-ui中的图标使用开源项目<a href="http://fontawesome.dashgame.com/" target="_blank" rel="external">fontAwesome</a></p>
 <p>###如何使用<br>使用<code>&lt;jzIcon /&gt;</code>组件，只需要指定图标对应的type属性<br>例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;jzIcon type=&quot;bath&quot;&gt;&lt;/jzIcon&gt;</div></pre></td></tr></table></figure></p>
 <p>经过vue框架的计算属性计算之后，将渲染为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;i class=&quot;jz-icon jz-icon-bath&quot;&gt;</div></pre></td></tr></table></figure></p>
-<p>###APIß<br>属性 | 说明 | 用法 | 默认值<br>—-|——|—–|——<br>type | 图标的名称，从<a href="http://fontawesome.dashgame.com/" target="_blank" rel="external">fontAwesome</a>获得  | <code>&lt;jzIcon type=&quot;bath&quot; /&gt;</code> | 无<br>size | 图标的大小  | <code>&lt;jzIcon type=&quot;bath&quot; size=&quot;30px&quot; /&gt;</code> | 默认图标的大小是width=15 height=15<br>color | 图标的颜色  |  <code>&lt;jzIcon type=&quot;bath&quot; size=&quot;30px&quot; color=&quot;red&quot;/&gt;</code>| 支持颜色的引文名称，rgb颜色格式，十六进制颜色格式等命名方式</p>
+<p>###API<br>属性 | 说明 | 用法 | 默认值<br>—-|——|—–|——<br>type | 图标的名称，从<a href="http://fontawesome.dashgame.com/" target="_blank" rel="external">fontAwesome</a>获得  | <code>&lt;jzIcon type=&quot;bath&quot; /&gt;</code> | 无<br>size | 图标的大小  | <code>&lt;jzIcon type=&quot;bath&quot; size=&quot;30px&quot; /&gt;</code> | 默认图标的大小是width=15 height=15<br>color | 图标的颜色  |  <code>&lt;jzIcon type=&quot;bath&quot; size=&quot;30px&quot; color=&quot;red&quot;/&gt;</code>| 支持颜色的引文名称，rgb颜色格式，十六进制颜色格式等命名方式</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zjz.com/2017/06/02/jz-ui组件库使用说明/" data-id="cj3fior2z0000c49a10igdkpf" class="article-share-link">Share</a>
+      <a data-url="http://zjz.com/2017/06/02/jz-ui组件库使用说明/" data-id="cj3fiy93g0002gc9aqd1t9m2o" class="article-share-link">Share</a>
       
       
     </footer>
